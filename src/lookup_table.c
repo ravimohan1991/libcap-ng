@@ -1,4 +1,4 @@
-/* lookup_table.c -- 
+/* lookup_table.c --
  * Copyright 2009, 2013 Red Hat Inc., Durham, North Carolina.
  * All Rights Reserved.
  *
@@ -79,7 +79,7 @@ static int capng_lookup_name(const struct transtab *table,
 		const char *tabstr, size_t length, const char *name)
 {
 	size_t i;
-    
+
 	for (i = 0; i < length; i++) {
 		if (!strcasecmp(tabstr + table[i].offset, name))
 			return table[i].value;
@@ -92,7 +92,7 @@ static const char *capng_lookup_number(const struct transtab *table,
                                        int number)
 {
 	size_t i;
-    
+
 	for (i = 0; i < length; i++) {
 		if (table[i].value == number)
 			return tabstr + table[i].offset;
@@ -106,6 +106,8 @@ int capng_name_to_capability(const char *name)
                                  CAP_NG_CAPABILITY_NAMES, name);
 }
 
+int asprintf (char **__restrict __ptr,
+		     const char *__restrict __fmt, ...);
 static char *ptr2 = NULL;
 const char *capng_capability_to_name(unsigned int capability)
 {

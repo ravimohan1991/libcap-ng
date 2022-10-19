@@ -20,7 +20,7 @@
  *      Steve Grubb <sgrubb@redhat.com>
  */
 
-#include "config.h"
+#include <unistd.h>
 #include "cap-ng.h"
 #include <string.h>
 #include <stdarg.h>
@@ -444,7 +444,7 @@ static int get_bounding_set(void)
 #ifdef HAVE_SYSCALL_H
 		(int)syscall(__NR_gettid));
 #else
-		(int)getpid();
+		(int) getpid());
 #endif
 	f = fopen(buf, "re");
 	if (f) {
@@ -489,7 +489,7 @@ static int get_ambient_set(void)
 #ifdef HAVE_SYSCALL_H
 		(int)syscall(__NR_gettid));
 #else
-		(int)getpid();
+		(int)getpid());
 #endif
 	f = fopen(buf, "re");
 	if (f) {
@@ -954,6 +954,9 @@ int capng_apply_caps_fd(int fd)
 	return rc;
 #endif
 }
+
+int setresgid (__gid_t __rgid, __gid_t __egid, __gid_t __sgid);
+int setresuid (__uid_t __ruid, __uid_t __euid, __uid_t __suid);
 
 // Change uids keeping/removing only certain capabilities
 // flag to drop supp groups
